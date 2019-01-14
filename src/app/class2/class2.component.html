@@ -1,0 +1,45 @@
+<!-- Two ways binding -->
+<!-- <input [(ngModel)] = "password" type="text" placeholder="type the password..."/> -->
+<input [(ngModel)] = "password" type="text" placeholder="type the password..."/>
+
+<!-- Directives -->
+<h2 *ngIf="password == 'junior'; else elseBlock ">
+    Acertô!!
+</h2>
+
+<ng-template #elseBlock>
+    <h2>
+        Errooou!!
+    </h2>
+</ng-template>
+
+<!-- Switch -->
+<input [(ngModel)] = "typedColor" type="text" placeholder="type the color bitch">
+<div [ngSwitch]="typedColor">
+    <div *ngSwitchCase="'red'">You picked red color</div>
+    <div *ngSwitchCase="'blue'">You picked blue color</div>
+    <div *ngSwitchCase="'green'">You picked green color</div>
+    <div *ngSwitchDefault>You picked any color try again!</div>
+</div>
+
+<!-- for loop -->
+<div *ngFor="let color of colors; index as i">
+    <h2> {{i}}. {{color}} </h2>
+</div>
+
+<!-- sending data between components -->
+<h2>{{"Hello " + name}}</h2>
+<button (click)="triggerEvent()">Click!!</button>
+
+<!-- String pipes -->
+<h2>{{name1 | lowercase}}</h2>
+<h2>{{name1 | uppercase}}</h2>
+<h2>{{message1 | titlecase}}</h2>
+<h3>{{person | json}}</h3>
+<!-- NUmber pipes-->
+<h3> {{"5.678" | number: "3.2-3"}}</h3>
+<h3>{{"5.678" | number: "3.3-4"}}</h3>
+<h3>{{"5.678" | number: "2.1-2"}}</h3>
+<!-- Percent pipes -->
+<h4>{{"0.25" | percent}}</h4>
+<h3>{{date | date : 'short'}}</h3>

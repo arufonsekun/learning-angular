@@ -31,6 +31,8 @@ import { Component, OnInit } from '@angular/core';
             <h2 [ngStyle]="titleStyles">Bind many styles</h2>
             <button (click)="onClick()">Esse botão manda vc se fude</button>
             <p [textContent]="enable ? 'Vai se fude!' : '' ">{{greeting}}!!</p>
+            <input #myInput type="text" placeholder="type a message"/>
+            <button (click)="logMessage(myInput)">Click!</button>
         `,
     styles: [`
         .text-success{
@@ -69,6 +71,10 @@ export class TestComponent implements OnInit {
 
     onClick(){
         this.enable = !this.enable;
+    }
+
+    logMessage(message){
+        console.log(message);
     }
 
     greetUser(){
