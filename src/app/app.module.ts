@@ -9,13 +9,15 @@ import { Class2Component } from './class2/class2.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeeService } from './employee.service';
 import { HttpClientModule } from '@angular/common/http';
+import { IndexPageComponent } from './index-page/index-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TestComponent,
     Class2Component,
-    EmployeeComponent
+    EmployeeComponent,
+    IndexPageComponent
   ],
   imports: [
     BrowserModule,
