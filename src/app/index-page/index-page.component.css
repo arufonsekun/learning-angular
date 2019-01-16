@@ -2,24 +2,3 @@
     margin-bottom: 0px !important;
     color: #fbfce4; /*bege*/
 }
-
-.card{
-    position: relative;
-}
-
-.card-body{
-    padding: 10px !important;
-}
-
-.actions{
-    float: right;
-    margin-left:3%;
-}
-
-i{
-    padding-top: 5px;
-}
-
-.card-icon {
-    font-size: medium;
-}

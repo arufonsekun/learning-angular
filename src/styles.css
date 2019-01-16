@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+.card{
+    position: relative;
+    margin-top: 10px;
+}
+
+.card-body{
+    padding: 10px !important;
+}
+
+.actions{
+    float: right;
+    margin-left:3%;
+}
+
+i{
+    padding-top: 5px;
+}
+
+.card-icon {
+    font-size: medium;
+}

@@ -5,7 +5,10 @@
 			<a [routerLink]="" (click) = "showNewTask()" class="navbar-brand text-light" role="button">
                 <i class="material-icons">add</i>
             </a>
-            <a href="#" class="navbar-brand text-light" role="button">
+			<a [routerLink]="" (click)="addNewTask()" class="navbar-brand text-light" role="button" style="margin-top:3px;">
+				<i class="material-icons card-icon">done</i>
+			</a>
+            <a [routerLink]="" class="navbar-brand text-light" role="button">
                 <i class="material-icons">history</i>
             </a>
 		</div>
@@ -13,89 +16,96 @@
 </header>
 <div class="container">
     <div class="row">
-        <div *ngIf="newTask" class="col-md-4 offset-md-4"style="margin-top: 2%; margin-bottom:2%;">
+        <div *ngIf="newTask" class="col-md-5 offset-md-4"style="margin-top: 2%; margin-bottom:2%;">
             <div class="card border-dark">
                 <div class="card-body text-dark">
-                    <input type="text" class="form-control" placeholder="Task Name..." style="margin-bottom: 2%;"/>
-                    <textarea class="form-control" placeholder="Task Description..." rows="3"></textarea>
+                    <input [(ngModel)] = "taskTitle" type="text" class="form-control" placeholder="Task Name..." style="margin-bottom: 2%;"/>
+                    <textarea [(ngModel)] = "taskDescrition" class="form-control" placeholder="Task Description..." rows="3"></textarea>
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-6">
                             <div class="form-group" style="margin-top:4%;">
                                 <label for="taskType" style="font-weight:bold;">Task Type</label>
-                                <select class="form-control" id="taskType">
-                                    <option>Fucked</option>
-                                    <option>Danger</option>
-                                    <option>There's Time</option>
-                                    <option>GG easy</option>
+                                <select [(ngModel)] = "taskType" class="form-control" id="taskType">
+                                    <option class="text-danger">Fucked</option>
+                                    <option class="text-warning">Danger</option>
+                                    <option class="text-info">There's Time</option>
+                                    <option class="text-success">GG Easy</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <a href="#" class="btn btn-outline-dark" role="button" style="margin-top:67%;">
-                                <i class="material-icons card-icon">done</i>
-                            </a>
-                        </div>
+						<div class="col-md-6">
+							<div class="form-group" style="margin-top:8px;">
+							  <label style="font-weight:bold;" for="deadline" class="form-label">Deadline</label>
+							    <input [(ngModel)] = "taskDeadLine" class="form-control" type="date" value="" id="deadline" />
+							</div>
+						</div>
                     </div>
                 </div>
             </div>
         </div>
+		<h3>{{taskDeadLine}}</h3>
     </div>
     <div class="row">
         <div class="col-md-3 fucked">
+			<h3 class="text-danger text-center" style="font-weight:bold; text-align:center;">Fucked</h3>
             <div class="card border-danger">
                 <div class="card-body text-danger">
                     <h6 class = "card-title">Task 1</h6>
                     <p class=card-text>This is some text within a card body.</p>
-                    <a href="#" class="btn btn-outline-dark actions" role="button">
+                    <a href="#" class="btn btn-sm btn-outline-dark actions" role="button">
                         <i class="material-icons card-icon">edit</i>
                     </a>
-                    <a href="#" class="btn btn-outline-dark actions" role="button">
+                    <a href="#" class="btn btn-sm btn-outline-dark actions" role="button">
                         <i class="material-icons card-icon">close</i>
                     </a>
                 </div>
             </div>
         </div>
         <div class="col-md-3 dang3r">
+			<h3 class="text-warning text-center" style="font-weight:bold; text-align:center;">Danger</h3>
             <div class="card border-warning">
                 <div class="card-body text-warning">
                     <h6 class = "card-title">Task 2</h6>
                     <p class=card-text>This is some text within a card body.</p>
-                    <a href="#" class="btn btn-outline-dark actions" role="button">
+                    <a href="#" class="btn btn-sm btn-outline-dark actions" role="button">
                         <i class="material-icons card-icon">edit</i>
                     </a>
-                    <a href="#" class="btn btn-outline-dark actions" role="button">
+                    <a href="#" class="btn btn-sm btn-outline-dark actions" role="button">
                         <i class="material-icons card-icon">close</i>
                     </a>
                 </div>
             </div>
         </div>
         <div class="col-md-3 theresTime">
+			<h3 class="text-info text-center" style="font-weight:bold; text-align:center;">There's Time</h3>
             <div class="card border-info">
                 <div class="card-body text-info">
                     <h6 class = "card-title">Task 3</h6>
                     <p class=card-text>This is some text within a card body.</p>
-                    <a href="#" class="btn btn-outline-dark actions" role="button">
+                    <a href="#" class="btn btn-sm btn-outline-dark actions" role="button">
                         <i class="material-icons card-icon">edit</i>
                     </a>
-                    <a href="#" class="btn btn-outline-dark actions" role="button">
+                    <a href="#" class="btn btn-sm btn-outline-dark actions" role="button">
                         <i class="material-icons card-icon">close</i>
                     </a>
                 </div>
             </div>
         </div>
         <div class="col-md-3 ggEasy">
+			<h3 class="text-success text-center" style="font-weight:bold; text-align:center;">GG Easy</h3>
             <div class="card border-success">
                 <div class="card-body text-success">
                     <h6 class = "card-title">Task 4</h6>
                     <p class=card-text>This is some text within a card body.</p>
-                    <a href="#" class="btn btn-outline-dark actions" role="button">
+                    <a href="#" class="btn btn-sm btn-outline-dark actions" role="button">
                         <i class="material-icons card-icon">edit</i>
                     </a>
-                    <a href="#" class="btn btn-outline-dark actions" role="button">
+                    <a href="#" class="btn btn-sm btn-outline-dark actions" role="button">
                         <i class="material-icons card-icon">close</i>
                     </a>
                 </div>
             </div>
+			<ng-template appGgEasy></ng-template>
         </div>
     </div>
 </div>

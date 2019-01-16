@@ -4,20 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TestComponent } from './test/test.component';
-import { Class2Component } from './class2/class2.component';
-import { EmployeeComponent } from './employee/employee.component';
-import { EmployeeService } from './employee.service';
 import { HttpClientModule } from '@angular/common/http';
 import { IndexPageComponent } from './index-page/index-page.component';
+import { NewTaskComponent } from './new-task/new-task.component';
+import { GgEasyDirective } from './gg-easy.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent,
-    Class2Component,
-    EmployeeComponent,
-    IndexPageComponent
+    IndexPageComponent,
+    NewTaskComponent,
+    GgEasyDirective
   ],
   imports: [
     BrowserModule,
@@ -25,7 +22,8 @@ import { IndexPageComponent } from './index-page/index-page.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [EmployeeService],
-  bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent],
+  entryComponents: [NewTaskComponent]
 })
 export class AppModule { }
