@@ -8,13 +8,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { IndexPageComponent } from './index-page/index-page.component';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { GgEasyDirective } from './gg-easy.directive';
+import { TheresTimeDirective } from './theres-time.directive';
+import { DangerDirective } from './danger.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexPageComponent,
     NewTaskComponent,
-    GgEasyDirective
+    GgEasyDirective,
+    TheresTimeDirective,
+    DangerDirective
   ],
   imports: [
     BrowserModule,

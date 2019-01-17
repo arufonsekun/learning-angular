@@ -11,16 +11,52 @@ export class NewTaskComponent implements OnInit {
     public taskType = "";
     public taskDescrition = "";
     public taskDeadLine = "";
-    public d = false; public w = false; public i = false; public s = false;
 
-    public borderStyle = {
-        "border-danger" : this.taskType == "Fucked" ? this.d = true : this.d = false,
-        "border-warning" : this.taskType == "Danger" ? this.w = true : this.w = false,
-        "border-info" : this.taskType == "There's Time" ? this.i = true : this.i = false,
-        "border-success" : this.taskType == "Success" ? this.s = true : this.s = false
-    };
+    public danger = false;
+    public warning = false;
+    public info = false;
+    public success = false;
 
-    constructor() { }
+    public getBorderColor(){
+        let borderColor = {
+            "border-danger" : this.danger,
+            "border-warning" : this.warning,
+            "border-info" : this.info,
+            "border-success" : this.success
+        };
+        return borderColor;
+    }
+
+    public getTextColor(){
+        let textColor = {
+            "text-danger" : this.danger,
+            "text-warning" : this.warning,
+            "text-info" : this.info,
+            "text-success" : this.success
+        };
+        return textColor;
+    }
+
+    public getBadgeColor(){
+        let badgeColor = {
+            "badge-danger" : this.danger,
+            "badge-warning" : this.warning,
+            "badge-info" : this.info,
+            "badge-success" : this.success
+        };
+        return badgeColor;
+    }
+
+    public setStyles(){
+        this.danger = this.taskType == "Fucked" ? true : false;
+        this.warning = this.taskType == "Danger" ? true : false;
+        this.info = this.taskType == "There's Time" ? true : false;
+        this.success = this.taskType == "GG Easy" ? true : false;
+    }
+
+    constructor() {
+
+    }
 
     ngOnInit() {
     }
