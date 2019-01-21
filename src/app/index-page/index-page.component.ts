@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular
 import { GgEasyDirective } from '../gg-easy.directive';
 import { TheresTimeDirective } from '../theres-time.directive';
 import { DangerDirective } from '../danger.directive';
+import { FuckedDirective } from '../fucked.directive';
 import { NewTaskComponent } from '../new-task/new-task.component';
 
 @Component({
@@ -18,24 +19,37 @@ export class IndexPageComponent implements OnInit {
     @ViewChild(GgEasyDirective) ggEasy: GgEasyDirective;
     @ViewChild(TheresTimeDirective) theresTime: TheresTimeDirective;
     @ViewChild(DangerDirective) danger: DangerDirective;
+    @ViewChild(FuckedDirective) fucked: FuckedDirective;
 
     constructor(private _componentFactoryResolver: ComponentFactoryResolver) { }
 
     public addNewTask(){
         //Add the component
-        const componentFactory = this._componentFactoryResolver
-        .resolveComponentFactory(NewTaskComponent);
-        if (this.taskType == "GG Easy"){
-            const componentRef = this.createComponentRef(this.ggEasy, componentFactory);
-            this.setData(componentRef);
-        }
-        else if (this.taskType == "There's Time"){
-            const componentRef = this.createComponentRef(this.theresTime, componentFactory);
-            this.setData(componentRef);
-        }
-        else if(this.taskType == "Danger"){
-            const componentRef = this.createComponentRef(this.danger, componentFactory);
-            this.setData(componentRef);
+        if (this.taskDescrition != ""){
+            const componentFactory = this._componentFactoryResolver
+            .resolveComponentFactory(NewTaskComponent);
+            if (this.taskType == "GG Easy"){
+                const componentRef = this.createComponentRef(this.ggEasy, componentFactory);
+                this.setData(componentRef);
+            }
+            else if (this.taskType == "There's Time"){
+                const componentRef = this.createComponentRef(this.theresTime, componentFactory);
+                this.setData(componentRef);
+            }
+            else if(this.taskType == "Danger"){
+                const componentRef = this.createComponentRef(this.danger, componentFactory);
+                this.setData(componentRef);
+            }
+
+            else{
+                const componentRef = this.createComponentRef(this.fucked, componentFactory);
+                this.setData(componentRef);
+            }
+            this.newTask = false;
+            this.taskType = "";
+            this.taskTitle = "";
+            this.taskDescrition = "";
+            this.taskDeadLine = "";
         }
 
     }

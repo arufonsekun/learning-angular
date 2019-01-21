@@ -1,8 +1,8 @@
 <div class="card" [ngClass]="getBorderColor()">
     <div class="card-body" [ngClass]="getTextColor()">
-        <h6 class = "card-title">{{taskTitle}}</h6>
-        <p class=card-text>{{taskDescrition}}</p>
-        <span class="badge badge-pill" [ngClass]="getBadgeColor()">Deadline {{taskDeadLine}}</span>
+        <h6 class = "card-title font-weight-bold">{{taskTitle}}</h6>
+        <div class=card-text [innerHTML]="taskDescrition"></div>
+        <span class="badge badge-pill" [ngClass]="getBadgeColor()">Deadline {{taskDeadLine.slice(8,10)+"/"+taskDeadLine.slice(5,7)+"/"+taskDeadLine.slice(0,4)}}</span>
         <a href="#" class="btn btn-sm btn-outline-dark actions" role="button">
             <i class="material-icons card-icon">edit</i>
         </a>

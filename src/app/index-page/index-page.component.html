@@ -20,7 +20,7 @@
             <div class="card border-dark">
                 <div class="card-body text-dark">
                     <input [(ngModel)] = "taskTitle" type="text" class="form-control" placeholder="Task Name..." style="margin-bottom: 2%;"/>
-                    <textarea [(ngModel)] = "taskDescrition" class="form-control" placeholder="Task Description..." rows="3"></textarea>
+                    <textarea [(ngModel)] = "taskDescrition" class="form-control" placeholder="Task Description... (use <ul>, <li> tags from html)" rows="3"></textarea>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group" style="margin-top:4%;">
@@ -59,6 +59,7 @@
                     </a>
                 </div>
             </div>
+			<ng-template appFucked></ng-template>
         </div>
         <div class="col-md-3 dang3r">
 			<h3 class="text-warning text-center" style="font-weight:bold; text-align:center;">Danger</h3>

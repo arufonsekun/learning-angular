@@ -10,6 +10,7 @@ import { NewTaskComponent } from './new-task/new-task.component';
 import { GgEasyDirective } from './gg-easy.directive';
 import { TheresTimeDirective } from './theres-time.directive';
 import { DangerDirective } from './danger.directive';
+import { FuckedDirective } from './fucked.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DangerDirective } from './danger.directive';
     NewTaskComponent,
     GgEasyDirective,
     TheresTimeDirective,
-    DangerDirective
+    DangerDirective,
+    FuckedDirective
   ],
   imports: [
     BrowserModule,
