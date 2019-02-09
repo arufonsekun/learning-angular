@@ -1,5 +1,6 @@
-<h2> Employee Details </h2>
+<h2> Employee List </h2>
+<h3>{{errorMsg}}</h3>
 <ul *ngFor="let employee of employees">
-    <h3>{{employee.id}}. {{employee.name}}</h3>
+    <h4>{{employee.id}}. {{employee.name}}</h4>
     <li>Age: {{employee.age}}</li>
 </ul>
