@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewTaskComponent implements OnInit {
 
+    public taskId : number;
     public taskTitle = "";
     public taskType = "";
     public taskDescrition = "";
