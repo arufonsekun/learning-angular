@@ -25,7 +25,7 @@ export class CreateTaskService {
 
         let options = {headers: headers};
 
-        return this.http.post<PostResponse>(this._url, {"id":null, "type":type, "title":title, "description":description, "deadLine":deadLine}, options)
+        return this.http.post<PostResponse>(this._url, {"id":id, "type":type, "title":title, "description":description, "deadLine":deadLine}, options)
         .toPromise().then(this.handleData).catch(this.handleError);
     }
 

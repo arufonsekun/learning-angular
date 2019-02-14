@@ -19,41 +19,31 @@ export class IndexPageComponent implements OnInit {
     @ViewChild(DangerDirective) danger: DangerDirective;
     @ViewChild(FuckedDirective) fucked: FuckedDirective;
 
-    private taskId : number = null;
+    private taskId : number;
     public newTask = false;
     public taskType = "";
     public taskTitle = "";
     public taskDescrition = "";
     public taskDeadLine = "";
-    private containersArray = {"GG Easy":this.ggEasy, "There's Time": this.theresTime, "Danger": this.danger, "Fucked":this.fucked};
+    private containersIndex = {"GG Easy": 0, "There's Time": 1, "Danger": 2, "Fucked": 3};
 
     constructor(private _componentFactoryResolver: ComponentFactoryResolver, private _taskService : CreateTaskService) { }
 
     public addNewTask(){
 
         if (this.taskDescrition){
-            // Post the new task
-            //this.postTask();
+            let directivesArray = [this.ggEasy, this.theresTime, this.danger, this.fucked];
+
             //Add the component
             if (this.taskDescrition != ""){
-                const componentFactory = this._componentFactoryResolver
+                var componentFactory = this._componentFactoryResolver
                 .resolveComponentFactory(NewTaskComponent);
-                if (this.taskType == "GG Easy"){
-                    const componentRef = this.createComponentRef(this.ggEasy, componentFactory);
-                    this.setData(componentRef);
-                }
-                else if (this.taskType == "There's Time"){
-                    const componentRef = this.createComponentRef(this.theresTime, componentFactory);
-                    this.setData(componentRef);
-                }
-                else if(this.taskType == "Danger"){
-                    const componentRef = this.createComponentRef(this.danger, componentFactory);
-                    this.setData(componentRef);
-                }
-                else{
-                    const componentRef = this.createComponentRef(this.fucked, componentFactory);
-                    this.setData(componentRef);
-                }
+                console.log(this.containersIndex[this.taskType]);
+                var componentRef = this.createComponentRef(directivesArray[this.containersIndex[this.taskType]], componentFactory);
+
+                this.setData(componentRef);
+                this.postTask(componentRef);
+
                 this.newTask = false;
                 this.taskType = "";
                 this.taskTitle = "";
@@ -70,8 +60,13 @@ export class IndexPageComponent implements OnInit {
         return componentRef;
     }
 
+    showNewTask(){
+        if(!this.newTask){
+            this.newTask = true;
+        }
+    }
+
     setData(componentRef){
-        //set the data
         componentRef.instance.taskDeadLine = this.taskDeadLine;
         componentRef.instance.taskTitle = this.taskTitle;
         componentRef.instance.taskDescrition = this.taskDescrition;
@@ -80,23 +75,16 @@ export class IndexPageComponent implements OnInit {
         componentRef.instance.setStyles();
     }
 
-    showNewTask(){
-        if(!this.newTask){
-            this.newTask = true;
-        }
-    }
-
-    postTask() : void{
+    postTask(componentRef) : void{
         this._taskService.createTask(null, this.taskType, this.taskTitle, this.taskDescrition, this.taskDeadLine)
         .then(data => {
-            this.taskId = data.id;
-            console.log(this.taskId);
+            //When the post request is done the id attr is assigned
+            componentRef.instance.taskId = data.id;
         },
             error => {
                 console.log("Post request error");
             }
         );
-        //console.log(this._taskService.getTaskId());
     }
 
     ngOnInit() {

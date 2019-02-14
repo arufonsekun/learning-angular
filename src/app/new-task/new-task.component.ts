@@ -55,8 +55,15 @@ export class NewTaskComponent implements OnInit {
         this.success = this.taskType == "GG Easy" ? true : false;
     }
 
-    constructor() {
+    public updateTask(){
+        console.log("Atualizar a tarefa de id = ",this.taskId);
+    }
 
+    public deleteTask(){
+        console.log("Deletar a tarefa de id = ",this.taskId);
+    }
+
+    constructor() {
     }
 
     ngOnInit() {
