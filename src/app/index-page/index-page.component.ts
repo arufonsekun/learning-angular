@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import { GgEasyDirective } from '../gg-easy.directive';
-import { TheresTimeDirective } from '../theres-time.directive';
-import { DangerDirective } from '../danger.directive';
-import { FuckedDirective } from '../fucked.directive';
+import { GgEasyDirective } from '../directives/gg-easy.directive';
+import { TheresTimeDirective } from '../directives/theres-time.directive';
+import { DangerDirective } from '../directives/danger.directive';
+import { FuckedDirective } from '../directives/fucked.directive';
 import { NewTaskComponent } from '../new-task/new-task.component';
-import { TaskService } from '../task-service.service';
+import { TaskService } from '../services/task-service.service';
+import { ModalService } from '../services/modal-service.service';
 import { ModalFormComponent } from '../modal-form/modal-form.component';
+import { Itask } from '../task';
 
 @Component({
   selector: 'app-index-page',
@@ -21,49 +23,44 @@ export class IndexPageComponent implements OnInit {
     @ViewChild(DangerDirective) danger: DangerDirective;
     @ViewChild(FuckedDirective) fucked: FuckedDirective;
 
-    private taskId : number;
-    public newTask = false;
-    public taskType = "";
-    public taskTitle = "";
-    public taskDescrition = "";
-    public taskDeadLine = "";
+    // private taskId : number;
+    // public newTask = false;
+    // public taskType = "";
+    // public taskTitle = "";
+    // public taskDescrition = "";
+    // public taskDeadLine = "";
     private containersIndex = {"GG Easy": 0, "There's Time": 1, "Danger": 2, "Fucked": 3};
 
     constructor(
         private _componentFactoryResolver: ComponentFactoryResolver,
         private _taskService : TaskService,
-        private modalService: NgbModal
+        private modalService: NgbModal,
+        public modalservice : ModalService
     ){
         //get a list of created tasks
-        // this._taskService.listTasks().subscribe(
-        //     data => this.renderTasks(data),
-        //     error => {console.log(error);}
-        // );
+        this._taskService.listTasks().subscribe(
+            data => this.renderTasks(data),
+            error => {console.log(error);}
+        );
     }
 
-    public addNewTask() : void{
+    public addNewTask(taskObj : Itask) : void{
+        console.log(taskObj.deadLine);
 
-        if (this.taskDescrition){
+        if (taskObj.description){
             let directivesArray = [this.ggEasy, this.theresTime, this.danger, this.fucked];
 
             //Add the component
             var componentFactory = this._componentFactoryResolver
             .resolveComponentFactory(NewTaskComponent);
-            var componentRef = this.createComponentRef(directivesArray[this.containersIndex[this.taskType]], componentFactory);
+            var componentRef = this.createComponentRef(directivesArray[this.containersIndex[taskObj.type]], componentFactory);
 
             //set the component data
-            this.setData(componentRef);
+            this.setData(componentRef, taskObj);
 
             //if the id is null the task must be create otherwise just rendered
-            if (this.taskId == null)
-                this.postTask(componentRef);
-
-            this.taskId = null;
-            this.newTask = false;
-            this.taskType = "";
-            this.taskTitle = "";
-            this.taskDescrition = "";
-            this.taskDeadLine = "";
+            if (taskObj.id == null)
+                this.postTask(componentRef, taskObj);
         }
 
     }
@@ -74,23 +71,17 @@ export class IndexPageComponent implements OnInit {
         return componentRef;
     }
 
-    showNewTask() : void{
-        if(!this.newTask){
-            this.newTask = true;
-        }
-    }
-
-    setData(componentRef) : void{
-        componentRef.instance.taskDeadLine = this.taskDeadLine;
-        componentRef.instance.taskTitle = this.taskTitle;
-        componentRef.instance.taskDescrition = this.taskDescrition;
-        componentRef.instance.taskType = this.taskType;
-        componentRef.instance.taskId = this.taskId;
+    setData(componentRef, taskObj : Itask) : void{
+        componentRef.instance.taskDeadLine = taskObj.deadLine;
+        componentRef.instance.taskTitle = taskObj.title;
+        componentRef.instance.taskDescrition = taskObj.description;
+        componentRef.instance.taskType = taskObj.type;
+        componentRef.instance.taskId = taskObj.id;
         componentRef.instance.setStyles();
     }
 
-    private postTask(componentRef) : void{
-        this._taskService.createTask(null, this.taskType, this.taskTitle, this.taskDescrition, this.taskDeadLine)
+    private postTask(componentRef, taskObj : Itask) : void{
+        this._taskService.createTask(taskObj)
         .then(data => {
             //When the post request is done the id attr is assigned
             componentRef.instance.taskId = data.id;
@@ -103,29 +94,26 @@ export class IndexPageComponent implements OnInit {
 
     public open(){
         // const modalRef = this.modalService.open(ModalComponent);
-        const modalRef = this.modalService.open(ModalFormComponent, {
-            size : 'sm'
-        });
+        const modalRef = this.modalService.open(ModalFormComponent,{size : 'sm'});
     }
 
     public print(){
-        console.log("Funcionou birl");
+        console.log("Funcionou ");
     }
 
     private renderTasks(data) : void{
         var i = 0;
         while (i < data.length){
-            this.taskType = data[i].type;
-            this.taskTitle = data[i].title;
-            this.taskDescrition = data[i].description;
-            this.taskDeadLine = data[i].deadLine;
-            this.taskId = data[i].id;
+            this.addNewTask(data[i]);
             i+=1;
-            this.addNewTask();
         }
     }
 
     ngOnInit() {
+        this.modalservice.createTaskChange.subscribe((taskObj) =>{
+            console.log(taskObj);
+            this.addNewTask(taskObj);
+        });
     }
 
 }

@@ -7,12 +7,13 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { IndexPageComponent } from './index-page/index-page.component';
 import { NewTaskComponent } from './new-task/new-task.component';
-import { GgEasyDirective } from './gg-easy.directive';
-import { TheresTimeDirective } from './theres-time.directive';
-import { DangerDirective } from './danger.directive';
-import { FuckedDirective } from './fucked.directive';
+import { GgEasyDirective } from './directives/gg-easy.directive';
+import { TheresTimeDirective } from './directives/theres-time.directive';
+import { DangerDirective } from './directives/danger.directive';
+import { FuckedDirective } from './directives/fucked.directive';
 import { ModalFormComponent } from './modal-form/modal-form.component';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDirective } from './directives/modal-directive.directive';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     TheresTimeDirective,
     DangerDirective,
     FuckedDirective,
-    ModalFormComponent
+    ModalFormComponent,
+    ModalDirective
   ],
   imports: [
     BrowserModule,

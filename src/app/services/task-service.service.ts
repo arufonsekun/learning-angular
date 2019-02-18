@@ -5,8 +5,8 @@ import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 import { map } from 'rxjs/operators';
-import { PostResponse } from './post-response';
-import { Itask } from './task';
+import { PostResponse } from '../post-response';
+import { Itask } from '../task';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class TaskService {
     constructor(private http : HttpClient) { }
 
     //method to post the data
-    public createTask(id, type, title, description, deadLine) : Promise<PostResponse>{
+    public createTask(taskObj) : Promise<PostResponse>{
         let headers = new HttpHeaders();
         headers.append('Content-Type', 'application/json');
         headers.append('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -26,7 +26,7 @@ export class TaskService {
 
         let options = {headers: headers};
 
-        return this.http.post<PostResponse>(this._url, {"id":id, "type":type, "title":title, "description":description, "deadLine":deadLine}, options)
+        return this.http.post<PostResponse>(this._url, taskObj, options)
         .toPromise().then(this.handleData).catch(this.handleError);
     }
 

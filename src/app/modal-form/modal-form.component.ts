@@ -1,5 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { ModalService } from '../services/modal-service.service';
 
 @Component({
   selector: 'app-modal-form',
@@ -13,10 +14,12 @@ export class ModalFormComponent implements OnInit {
     public taskDescrition = "";
     public taskDeadLine = "";
 
-    constructor(public activeModal: NgbActiveModal) { }
+    constructor(public activeModal: NgbActiveModal, private modalService : ModalService) { }
 
     public addNewTask(){
-        console.log(this.taskType, this.taskTitle, this.taskDescrition, this.taskDeadLine);
+        let taskObj = {"id":null, "type":this.taskType, "title":this.taskTitle, "description":this.taskDescrition, "deadLine":this.taskDeadLine};
+        this.modalService.createTaskChange.emit(taskObj);
+        this.activeModal.close();
     }
 
     ngOnInit() {
