@@ -1,0 +1,36 @@
+<ng-template>
+    <div role="document" class="modal-dialog">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-body">
+                <div class="card border-dark">
+                    <div class="card-header border-dark">
+                        <input [(ngModel)] = "taskTitle" type="text" class="form-control form-control-sm" placeholder="Task Name..." style="margin-bottom: 2%;"/>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text text-dark">
+                            <textarea [(ngModel)] = "taskDescrition" class="form-control" placeholder="Task Description..." rows="3"></textarea>
+                        </div>
+                        <div class="form-group" style="margin-top:8px;">
+                            <label style="font-size: 15px; font-weight:bold;" class="form-label">Task Type</label>
+                            <select [(ngModel)] = "taskType" class="form-control form-control-sm">
+                                <option class="text-success">GG Easy</option>
+                                <option class="text-info">There's Time</option>
+                                <option class="text-warning">Danger</option>
+                                <option class="text-danger">Fucked</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-top:8px;">
+                            <label style="font-size: 15px; font-weight:bold;" for="deadline" class="form-label">Deadline</label>
+                            <input [(ngModel)] = "taskDeadLine" class="form-control" type="date" value="" id="deadline" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="addNewTask()">Create</button>
+            </div>
+          </div>
+      </div>
+    </div>
+</ng-template>

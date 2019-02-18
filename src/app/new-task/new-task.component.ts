@@ -18,6 +18,9 @@ export class NewTaskComponent implements OnInit {
     public info = false;
     public success = false;
 
+    constructor() {
+    }
+
     public getBorderColor(){
         let borderColor = {
             "border-danger" : this.danger,
@@ -61,9 +64,6 @@ export class NewTaskComponent implements OnInit {
 
     public deleteTask(){
         console.log("Deletar a tarefa de id = ",this.taskId);
-    }
-
-    constructor() {
     }
 
     ngOnInit() {

@@ -1,8 +1,25 @@
-<header class="navbar navbar-expand-lg bg-dark border-dark">
-	<div class="collapse navbar-collapse">
-        <h5 class="title">TaskManager</h5>
-		<div class="offset-md-9 d-flex justify-content-end">
-			<a [routerLink]="" (click) = "showNewTask()" class="navbar-brand text-light" role="button">
+<header class="navbar navbar-expand flex-column flex-md-row bd-navbar bg-dark border-dark">
+	<div class="row collapse navbar-collapse">
+		<div class="col-lg-3 d-xl-inline d-lg-inline d-md-none d-sm-none">
+	        <h5 class="title">TaskManager</h5>
+		</div>
+		<div class="col-md-3 d-xl-none d-lg-none d-md-inline d-sm-inline">
+	        <h5 class="title">TaskManager</h5>
+		</div>
+
+		<div class="offset-lg-7 d-xl-inline d-lg-inline d-md-none d-sm-none">
+			<a [routerLink]="" (click) = "open()" class="navbar-brand text-light" data-toggle="modal" role="button">
+                <i class="material-icons">add</i>
+            </a>
+			<a [routerLink]="" (click)="addNewTask()" class="navbar-brand text-light" role="button" style="margin-top:3px;">
+				<i class="material-icons card-icon">done</i>
+			</a>
+            <a [routerLink]="" class="navbar-brand text-light" role="button">
+                <i class="material-icons">history</i>
+            </a>
+		</div>
+		<div class="offset-md-6 d-xl-none d-lg-none d-md-inline d-sm-inline">
+			<a [routerLink]="" (click) = "open()" class="navbar-brand text-light" data-toggle="modal" role="button">
                 <i class="material-icons">add</i>
             </a>
 			<a [routerLink]="" (click)="addNewTask()" class="navbar-brand text-light" role="button" style="margin-top:3px;">
@@ -16,97 +33,20 @@
 </header>
 <div class="container">
     <div class="row">
-        <div *ngIf="newTask" class="col-md-5 offset-md-4"style="margin-top: 2%; margin-bottom:2%;">
-            <div class="card border-dark">
-                <div class="card-body text-dark">
-                    <input [(ngModel)] = "taskTitle" type="text" class="form-control" placeholder="Task Name..." style="margin-bottom: 2%;"/>
-                    <textarea [(ngModel)] = "taskDescrition" class="form-control" placeholder="Task Description... (use <ul>, <li> tags from html)" rows="3"></textarea>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" style="margin-top:4%;">
-                                <label for="taskType" style="font-weight:bold;">Task Type</label>
-                                <select [(ngModel)] = "taskType" class="form-control" id="taskType">
-                                    <option class="text-danger">Fucked</option>
-                                    <option class="text-warning">Danger</option>
-                                    <option class="text-info">There's Time</option>
-                                    <option class="text-success">GG Easy</option>
-                                </select>
-                            </div>
-                        </div>
-						<div class="col-md-6">
-							<div class="form-group" style="margin-top:8px;">
-							  <label style="font-weight:bold;" for="deadline" class="form-label">Deadline</label>
-							    <input [(ngModel)] = "taskDeadLine" class="form-control" type="date" value="" id="deadline" />
-							</div>
-						</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-md-3 fucked">
 			<h3 class="text-danger text-center" style="font-weight:bold; text-align:center;">Fucked</h3>
-            <div class="card border-danger">
-                <div class="card-body text-danger">
-                    <h6 class = "card-title">Task 1</h6>
-                    <p class=card-text>This is some text within a card body.</p>
-                    <a href="#" class="btn btn-sm btn-outline-dark actions" role="button">
-                        <i class="material-icons card-icon">edit</i>
-                    </a>
-                    <a href="#" class="btn btn-sm btn-outline-dark actions" role="button">
-                        <i class="material-icons card-icon">close</i>
-                    </a>
-                </div>
-            </div>
 			<ng-template appFucked></ng-template>
         </div>
         <div class="col-md-3 dang3r">
 			<h3 class="text-warning text-center" style="font-weight:bold; text-align:center;">Danger</h3>
-            <div class="card border-warning">
-                <div class="card-body text-warning">
-                    <h6 class = "card-title">Task 2</h6>
-                    <p class=card-text>This is some text within a card body.</p>
-                    <a href="#" class="btn btn-sm btn-outline-dark actions" role="button">
-                        <i class="material-icons card-icon">edit</i>
-                    </a>
-                    <a href="#" class="btn btn-sm btn-outline-dark actions" role="button">
-                        <i class="material-icons card-icon">close</i>
-                    </a>
-                </div>
-            </div>
 			<ng-template appDanger></ng-template>
         </div>
         <div class="col-md-3 theresTime">
 			<h3 class="text-info text-center" style="font-weight:bold; text-align:center;">There's Time</h3>
-            <div class="card border-info">
-                <div class="card-body text-info">
-                    <h6 class = "card-title">Task 3</h6>
-                    <p class=card-text>This is some text within a card body.</p>
-                    <a href="#" class="btn btn-sm btn-outline-dark actions" role="button">
-                        <i class="material-icons card-icon">edit</i>
-                    </a>
-                    <a href="#" class="btn btn-sm btn-outline-dark actions" role="button">
-                        <i class="material-icons card-icon">close</i>
-                    </a>
-                </div>
-            </div>
 			<ng-template appTheresTime></ng-template>
         </div>
         <div class="col-md-3 ggEasy">
 			<h3 class="text-success text-center" style="font-weight:bold; text-align:center;">GG Easy</h3>
-            <div class="card border-success">
-                <div class="card-body text-success">
-                    <h6 class = "card-title">Task 4</h6>
-                    <p class=card-text>This is some text within a card body.</p>
-                    <a href="#" class="btn btn-sm btn-outline-dark actions" role="button">
-                        <i class="material-icons card-icon">edit</i>
-                    </a>
-                    <a href="#" class="btn btn-sm btn-outline-dark actions" role="button">
-                        <i class="material-icons card-icon">close</i>
-                    </a>
-                </div>
-            </div>
 			<ng-template appGgEasy></ng-template>
         </div>
     </div>

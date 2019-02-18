@@ -11,6 +11,8 @@ import { GgEasyDirective } from './gg-easy.directive';
 import { TheresTimeDirective } from './theres-time.directive';
 import { DangerDirective } from './danger.directive';
 import { FuckedDirective } from './fucked.directive';
+import { ModalFormComponent } from './modal-form/modal-form.component';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,16 +22,18 @@ import { FuckedDirective } from './fucked.directive';
     GgEasyDirective,
     TheresTimeDirective,
     DangerDirective,
-    FuckedDirective
+    FuckedDirective,
+    ModalFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [NgbActiveModal],
   bootstrap: [AppComponent],
-  entryComponents: [NewTaskComponent]
+  entryComponents: [NewTaskComponent, ModalFormComponent]
 })
 export class AppModule { }
