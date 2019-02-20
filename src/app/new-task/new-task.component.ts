@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RemoveTaskService } from '../services/remove-task.service';
 
 @Component({
   selector: 'app-new-task',
@@ -18,7 +19,7 @@ export class NewTaskComponent implements OnInit {
     public info = false;
     public success = false;
 
-    constructor() {
+    constructor( private removeTaskService : RemoveTaskService) {
     }
 
     public getBorderColor(){
@@ -62,8 +63,8 @@ export class NewTaskComponent implements OnInit {
         console.log("Atualizar a tarefa de id = ",this.taskId);
     }
 
-    public deleteTask(){
-        console.log("Deletar a tarefa de id = ",this.taskId);
+    public deleteTask() : void{
+        this.removeTaskService.removeTask.emit(this.taskId);
     }
 
     ngOnInit() {
