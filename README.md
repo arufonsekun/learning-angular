@@ -1,27 +1,19 @@
-# Learning-Angular
+# Task Manager App
+### Application Description </br>
+  This branch contains the code related to the project developed for the purpose of practicing the concepts of the angular framework.
+  TaskManager is a silly application that allows you to create reminders to your daily tasks. To create a task you need a name, a description, a dead line and a classification. 
+You can classify a new task in 4 ways: 
+ - **Fucked**;
+ - **Danger**;
+ - **There's Time**;
+ - **GG Easy**;
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
+Fucked represents a task whose deadline is very close, Danger classification represents a potential Fucked task, There's Time classification is self-explanatory and finally GG Easy is for the tasks that will not be done today or tomorrow at all.
 
-## Development server
+TaskManager gets his resources from [taskmanager-service](https://github.com/Junior-16/taskmanager-service) through https requests.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+###Application Overview
 
-## Code scaffolding
+<img src="#"/>
+<img src="#"/>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
