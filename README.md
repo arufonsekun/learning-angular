@@ -12,8 +12,9 @@ Fucked represents a task whose deadline is very close, Danger classification rep
 
 TaskManager gets his resources from [taskmanager-service](https://github.com/Junior-16/taskmanager-service) through https requests.
 
-###Application Overview
+### Application Overview
 
-<img src="#"/>
-<img src="#"/>
+<img src="https://raw.githubusercontent.com/Junior-16/learning-angular/task-manager/imgs/overview1.png"/>
+
+<img src="https://raw.githubusercontent.com/Junior-16/learning-angular/task-manager/imgs/overview2.png"/>
 
