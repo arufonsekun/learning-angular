@@ -10,7 +10,7 @@ You can classify a new task in 4 ways:
 
 Fucked represents a task whose deadline is very close, Danger classification represents a potential Fucked task, There's Time classification is self-explanatory and finally GG Easy is for the tasks that will not be done today or tomorrow at all.
 
-TaskManager gets his resources from [taskmanager-service](https://github.com/Junior-16/taskmanager-service) through https requests.
+TaskManager gets his resources from [taskmanager-service](https://github.com/Junior-16/taskmanager-service) through asynchronous https requests.
 
 ### Application Overview
 
